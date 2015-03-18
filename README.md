@@ -10,28 +10,28 @@ mvn install
 
 # What is the diffrence between BD and BigDecimal?
 
-1. It adds methods for operating on primitive types
+- It adds methods for operating on primitive types
 ```java
     new BigDecimal(2).multiply(new BigDecimal(3.0)).subtract(new BigDecimal(4f));
     new BD(2).multiply(3.0).subtract(4f);
 ```
 
-2. It operates only on Strings
+- It operates only on Strings
 ```java
     new BigDecimal(0.1).multiply(new BigDecimal(1)))  //0.1000000000000000055511151231..
     new BD(0.1).multiply(1));                         //0.1
 ```
 
-3. It propegates MathContext
+- It propegates MathContext
 ```java
     MathContext mc = new MathContext(34, RoundingMode.HALF_UP);
-    new BigDecimal("3.112", mc).divide(new BigDecimal("2")).setScale(2) //ArithmeticException
-    new BD("3.112", mc).divide("2").setScale(2)                         //1.56
+    new BigDecimal("3.112", mc).divide(new BigDecimal("2")).setScale(2); //ArithmeticException
+    new BD("3.112", mc).divide("2").setScale(2);                         //1.56
 ```
 
 You can even omit the MathContext and the BD will use default one for you (34, HALF_UP)
 ```java
-    new BD("3.112").divide("2").setScale(2)
+    new BD("3.112").divide("2").setScale(2);                            //1.56
 ```
 
 # Other methods
@@ -40,9 +40,9 @@ You can even omit the MathContext and the BD will use default one for you (34, H
     new BD(1.999).floor(2);                     //1.99
     new BD(1.455).doubleValue(2);               //1.46
     new BD(-1.455).setScale(2).floatValue();    //-1.46
-    new BD(122).net(22).doubleValue(2);        //100.0
-    new BD(100).gross(22).doubleValue(2);      //122.0
-    new BD(122).tax(22).doubleValue(2);        //22.0
+    new BD(122).net(22).doubleValue(2);         //100.0
+    new BD(100).gross(22).doubleValue(2);       //122.0
+    new BD(122).tax(22).doubleValue(2);         //22.0
 ```
 
 License
